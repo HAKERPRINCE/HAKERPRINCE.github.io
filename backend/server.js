@@ -1,46 +1,24 @@
-const express = require("express");
+const express = require('express');
+const path = require('path');
 const app = express();
+const port = process.env.PORT || 3000;
 
+// JSON parse
 app.use(express.json());
 
-// TEST ROUTE
-app.get("/", (req, res) => {
-  res.json({
-    status: "OK",
-    message: "GodVoid Backend Live 🚀"
-  });
+// Serve frontend
+app.use(express.static(path.join(__dirname, '..')));
+
+// Free server
+app.post('/create-free', (req, res) => {
+  // Free server 24/7 nahi chalega
+  res.json({ message: 'Free server created! It will run limited time.' });
 });
 
-// CREATE SERVER (FAKE LOGIC ABHI)
-app.post("/create-server", (req, res) => {
-  const { plan } = req.body;
-
-  if (!plan) {
-    return res.status(400).json({ error: "Plan missing" });
-  }
-
-  if (plan === "free") {
-    return res.json({
-      server: "created",
-      type: "FREE",
-      online: false,
-      note: "Free server is NOT 24/7"
-    });
-  }
-
-  if (plan === "paid") {
-    return res.json({
-      server: "created",
-      type: "PAID",
-      online: true,
-      note: "Paid server is 24/7 ON"
-    });
-  }
-
-  res.status(400).json({ error: "Invalid plan" });
+// Paid server
+app.post('/buy-plan', (req, res) => {
+  // Paid server 24/7 chalega
+  res.json({ message: 'Paid server activated! It will run 24/7.' });
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log("Backend running on port " + PORT);
-});
+app.listen(port, () => console.log(`Server running on port ${port}`));
