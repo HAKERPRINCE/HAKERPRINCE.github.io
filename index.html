@@ -1,86 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>GodVoid Minecraft Hosting</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      color: white;
-      background: url('giphy.gif') no-repeat center center fixed;
-      background-size: cover;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GodVoid Minecraft Hosting</title>
+<style>
+  /* Full screen + center everything */
+  html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('giphy.gif') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;  /* horizontal center */
+    align-items: center;      /* vertical center */
+  }
 
-    .overlay {
-      background: rgba(0,0,0,0.6);
-      padding: 30px;
-      display: inline-block;
-      margin-top: 50px;
-      border-radius: 15px;
-    }
+  /* Overlay for readability */
+  .overlay {
+    background: rgba(0,0,0,0.6);
+    padding: 40px 30px;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    max-width: 480px;
+    width: 90%;
+  }
 
-    .btn {
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin: 5px;
-    }
+  h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
 
-    .btn.free {
-      background: #00ffcc;
-      color: black;
-    }
+  p {
+    font-size: 16px;
+    margin: 5px 0;
+  }
 
-    .btn.premium {
-      background: #ff8800;
-      color: white;
-    }
-  </style>
-</head>
-<body>
-  <div class="overlay">
-    <h1>🚀 GodVoid Minecraft Hosting</h1>
-    <p>Free & Premium Minecraft Servers</p>
-    <p>Plugins • Mods • Modpacks Supported</p>
-    <p>🔥 Minecraft Hosting Live 🔥</p>
-    <button class="btn free">Create Free Server</button>
-    <button class="btn premium">Buy Plan</button>
-  </div>
+  .status {
+    margin: 15px 0;
+    font-weight: bold;
+    color: #ff9800;
+  }
 
-  <script>
-    document.querySelector('.btn.free').addEventListener('click', async () => {
-      const res = await fetch('/create-free', { method: 'POST' });
-      const data = await res.json();
-      alert(data.message);
-    });
+  .buttons {
+    display: flex;
+    justify-content: center;  /* horizontal center */
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
 
-    document.querySelector('.btn.premium').addEventListener('click', async () => {
-      const res = await fetch('/buy-plan', { method: 'POST' });
-      const data = await res.json();
-      alert(data.message);
-    });
-  </script>
-</body>
-</html>
-
-    </div>
-  </div>
-
-</body>
-</html>
+  .btn {
+    padding: 12px 22px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
     transition: 0.3s;
   }
 
   .btn.free {
-    background: linear-gradient(135deg, #00ffcc, #00ccff);
+    background: linear-gradient(135deg,#00ffcc,#00ccff);
     color: black;
   }
 
   .btn.premium {
-    background: linear-gradient(135deg, #ff9800, #ff5722);
+    background: linear-gradient(135deg,#ff9800,#ff5722);
     color: white;
   }
 
@@ -88,6 +75,37 @@
     transform: scale(1.08);
     box-shadow: 0 0 20px rgba(255,255,255,0.4);
   }
-  </style>
-
+</style>
 </head>
+<body>
+
+<div class="overlay">
+  <h1>🚀 GodVoid Minecraft Hosting</h1>
+  <p>Free & Premium Minecraft Servers</p>
+  <p>Plugins • Mods • Modpacks Supported</p>
+  <div class="status">🔥 Minecraft Hosting Live 🔥</div>
+
+  <div class="buttons">
+    <button class="btn free">Create Free Server</button>
+    <button class="btn premium">Buy Plan</button>
+  </div>
+</div>
+
+<script>
+  // Free button
+  document.querySelector('.btn.free').addEventListener('click', async () => {
+    const res = await fetch('/create-free', { method: 'POST' });
+    const data = await res.json();
+    alert(data.message);
+  });
+
+  // Paid button
+  document.querySelector('.btn.premium').addEventListener('click', async () => {
+    const res = await fetch('/buy-plan', { method: 'POST' });
+    const data = await res.json();
+    alert(data.message);
+  });
+</script>
+
+</body>
+</html>
