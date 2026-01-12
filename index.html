@@ -1,40 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Minecraft Hosting Live</title>
 
 <style>
+/* ===== PAGE BACKGROUND ===== */
 body {
-  margin:0;
-  height:100vh;
-  background:black;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  color:white;
-  font-family:Arial;
+  margin: 0;
+  height: 100vh;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  color: white;
 }
 
+/* ===== CENTER BOX ===== */
 .main {
-  text-align:center;
+  text-align: center;
 }
 
-button {
-  padding:15px 25px;
-  margin:10px;
-  font-size:18px;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
+/* ===== BUTTON COMMON ===== */
+.button {
+  padding: 15px 25px;
+  margin: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: black;
 }
 
+/* ===== FREE BUTTON ===== */
 .free {
-  background:#00ff7f;
+  background: #00ff7f;
 }
 
+/* ===== PAID BUTTON ===== */
 .paid {
-  background:#ffb300;
+  background: #ffb300;
 }
 </style>
 </head>
@@ -44,8 +51,8 @@ button {
 <div class="main">
   <h1>Minecraft Hosting Live</h1>
 
-  <button class="free" onclick="openFreePanel()">Free Server</button>
-  <button class="paid" onclick="openPaid()">Paid Plan</button>
+  <button class="button free" onclick="openFreePanel()">Free Server</button>
+  <button class="button paid" onclick="openPaid()">Paid Plan</button>
 </div>
 
 <script src="./script.js"></script>
