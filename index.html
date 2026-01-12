@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
   <title>Minecraft Hosting</title>
@@ -8,31 +8,22 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
       height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       background: black;
       color: white;
+      font-family: Arial, sans-serif;
     }
 
-    .container {
+    .box {
       text-align: center;
-    }
-
-    h1 {
-      margin-bottom: 30px;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
     }
 
     button {
       padding: 12px 25px;
+      margin: 10px;
       font-size: 16px;
       border: none;
       border-radius: 8px;
@@ -42,67 +33,47 @@
       font-weight: bold;
     }
 
-    button:hover {
-      background: #00cc6f;
-    }
-
     .panel {
-      display: none;
-      margin-top: 30px;
+      margin-top: 20px;
+      padding: 15px;
       background: #111;
-      padding: 20px;
       border-radius: 10px;
-      width: 300px;
-    }
-
-    .panel h2 {
-      margin-top: 0;
-      color: #00ff88;
+      display: none;
     }
   </style>
 </head>
+
 <body>
 
-  <div class="container">
+  <div class="box">
     <h1>Minecraft Hosting Live</h1>
 
-    <div class="buttons">
-      <button id="freeBtn">Free Server</button>
-      <button id="paidBtn">Paid Plan</button>
-    </div>
+    <button onclick="showFree()">Free Server</button>
+    <button onclick="showPaid()">Paid Plan</button>
 
-    <!-- FREE SERVER PANEL -->
     <div id="freePanel" class="panel">
       <h2>Free Server</h2>
-      <p>✔ Limited RAM</p>
-      <p>✔ Not 24/7</p>
-      <p>✔ Trial Server</p>
+      <p>Limited RAM</p>
+      <p>Not 24/7</p>
     </div>
 
-    <!-- PAID PLAN PANEL -->
     <div id="paidPanel" class="panel">
       <h2>Paid Plan</h2>
-      <p>✔ 24/7 Online</p>
-      <p>✔ High RAM & CPU</p>
-      <p>✔ Mods & Plugins</p>
+      <p>24/7 Online</p>
+      <p>High Performance</p>
     </div>
   </div>
 
   <script>
-    const freeBtn = document.getElementById("freeBtn");
-    const paidBtn = document.getElementById("paidBtn");
-    const freePanel = document.getElementById("freePanel");
-    const paidPanel = document.getElementById("paidPanel");
+    function showFree() {
+      document.getElementById("freePanel").style.display = "block";
+      document.getElementById("paidPanel").style.display = "none";
+    }
 
-    freeBtn.onclick = () => {
-      freePanel.style.display = "block";
-      paidPanel.style.display = "none";
-    };
-
-    paidBtn.onclick = () => {
-      paidPanel.style.display = "block";
-      freePanel.style.display = "none";
-    };
+    function showPaid() {
+      document.getElementById("paidPanel").style.display = "block";
+      document.getElementById("freePanel").style.display = "none";
+    }
   </script>
 
 </body>
