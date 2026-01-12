@@ -1,111 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GodVoid Minecraft Hosting</title>
-<style>
-  /* Full screen + center everything */
-  html, body {
-    height: 100%;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: url('giphy.gif') no-repeat center center fixed;
-    background-size: cover;
-    display: flex;
-    justify-content: center;  /* horizontal center */
-    align-items: center;      /* vertical center */
-  }
+  <meta charset="UTF-8">
+  <title>Minecraft Hosting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  /* Overlay for readability */
-  .overlay {
-    background: rgba(0,0,0,0.6);
-    padding: 40px 30px;
-    border-radius: 15px;
-    text-align: center;
-    color: white;
-    max-width: 480px;
-    width: 90%;
-  }
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: black;
+      color: white;
+    }
 
-  h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-  }
+    .container {
+      text-align: center;
+    }
 
-  p {
-    font-size: 16px;
-    margin: 5px 0;
-  }
+    h1 {
+      margin-bottom: 30px;
+    }
 
-  .status {
-    margin: 15px 0;
-    font-weight: bold;
-    color: #ff9800;
-  }
+    .buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
 
-  .buttons {
-    display: flex;
-    justify-content: center;  /* horizontal center */
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-  }
+    button {
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #00ff88;
+      color: black;
+      font-weight: bold;
+    }
 
-  .btn {
-    padding: 12px 22px;
-    font-size: 16px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
+    button:hover {
+      background: #00cc6f;
+    }
 
-  .btn.free {
-    background: linear-gradient(135deg,#00ffcc,#00ccff);
-    color: black;
-  }
+    .panel {
+      display: none;
+      margin-top: 30px;
+      background: #111;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+    }
 
-  .btn.premium {
-    background: linear-gradient(135deg,#ff9800,#ff5722);
-    color: white;
-  }
-
-  .btn:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 20px rgba(255,255,255,0.4);
-  }
-</style>
+    .panel h2 {
+      margin-top: 0;
+      color: #00ff88;
+    }
+  </style>
 </head>
 <body>
 
-<div class="overlay">
-  <h1>🚀 GodVoid Minecraft Hosting</h1>
-  <p>Free & Premium Minecraft Servers</p>
-  <p>Plugins • Mods • Modpacks Supported</p>
-  <div class="status">🔥 Minecraft Hosting Live 🔥</div>
+  <div class="container">
+    <h1>Minecraft Hosting Live</h1>
 
-  <div class="buttons">
-    <button class="btn free">Create Free Server</button>
-    <button class="btn premium">Buy Plan</button>
+    <div class="buttons">
+      <button id="freeBtn">Free Server</button>
+      <button id="paidBtn">Paid Plan</button>
+    </div>
+
+    <!-- FREE SERVER PANEL -->
+    <div id="freePanel" class="panel">
+      <h2>Free Server</h2>
+      <p>✔ Limited RAM</p>
+      <p>✔ Not 24/7</p>
+      <p>✔ Trial Server</p>
+    </div>
+
+    <!-- PAID PLAN PANEL -->
+    <div id="paidPanel" class="panel">
+      <h2>Paid Plan</h2>
+      <p>✔ 24/7 Online</p>
+      <p>✔ High RAM & CPU</p>
+      <p>✔ Mods & Plugins</p>
+    </div>
   </div>
-</div>
 
-<script>
-  // Free button
-  document.querySelector('.btn.free').addEventListener('click', async () => {
-    const res = await fetch('/create-free', { method: 'POST' });
-    const data = await res.json();
-    alert(data.message);
-  });
+  <script>
+    const freeBtn = document.getElementById("freeBtn");
+    const paidBtn = document.getElementById("paidBtn");
+    const freePanel = document.getElementById("freePanel");
+    const paidPanel = document.getElementById("paidPanel");
 
-  // Paid button
-  document.querySelector('.btn.premium').addEventListener('click', async () => {
-    const res = await fetch('/buy-plan', { method: 'POST' });
-    const data = await res.json();
-    alert(data.message);
-  });
-</script>
+    freeBtn.onclick = () => {
+      freePanel.style.display = "block";
+      paidPanel.style.display = "none";
+    };
+
+    paidBtn.onclick = () => {
+      paidPanel.style.display = "block";
+      freePanel.style.display = "none";
+    };
+  </script>
 
 </body>
 </html>
