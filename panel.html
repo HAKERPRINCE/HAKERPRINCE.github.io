@@ -5,82 +5,120 @@
 <title>Minecraft Server Panel</title>
 
 <style>
-body {
-  margin: 0;
-  height: 100vh;
-
-  /* 🟢 PANEL PAGE = IMAGE ONLY */
-  background: url("./minecraft.jpg") no-repeat center center/cover;
-
-  font-family: Arial, sans-serif;
-  color: white;
-
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+body{
+  margin:0;
+  background:#0f1720;
+  font-family:Arial, sans-serif;
+  color:white;
 }
 
-/* dark overlay */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.65);
-  z-index: -1;
+/* top bar */
+.top{
+  background:#1c2733;
+  padding:15px;
+  font-size:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.panel {
-  width: 90%;
-  max-width: 600px;
-  margin-top: 30px;
+.server-box{
+  background:#253240;
+  margin:15px;
+  padding:15px;
+  border-radius:12px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.box {
-  background: rgba(0,0,0,0.7);
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 15px;
+.status{
+  width:12px;
+  height:12px;
+  background:red;
+  border-radius:50%;
 }
 
-.buttons button {
-  padding: 10px 16px;
-  margin: 5px;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  cursor: pointer;
+/* menu */
+.menu{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  padding:15px;
 }
 
-.start { background: #00c853; }
-.stop { background: #d50000; }
-.restart { background: #ff9100; }
+.item{
+  background:#2f3e4d;
+  padding:15px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+}
+
+.item:hover{
+  background:#3a4c5f;
+}
+
+/* full width */
+.full{
+  grid-column:1 / -1;
+}
+
+/* bottom bar */
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:#1c2733;
+  display:flex;
+  justify-content:space-around;
+  padding:10px 0;
+  font-size:14px;
+}
 </style>
 </head>
 
 <body>
 
-<div class="panel">
-  <h2>🖥️ Minecraft Server Panel</h2>
+<div class="top">
+  <div>Server</div>
+  <div>My Servers</div>
+</div>
 
-  <div class="box">
-    <h3>Server Controls</h3>
-    <div class="buttons">
-      <button class="start">Start</button>
-      <button class="stop">Stop</button>
-      <button class="restart">Restart</button>
-    </div>
+<div class="server-box">
+  <div>
+    <b>MC_Godfire</b><br>
+    <small>#xuBPFJgFwFb35Pl</small>
   </div>
+  <div class="status"></div>
+</div>
 
-  <div class="box">
-    <h3>Plugins</h3>
-    <p>EssentialsX</p>
-    <p>LuckPerms</p>
-  </div>
+<div class="menu">
+  <div class="item">🔌 Server</div>
+  <div class="item">⚙️ Options</div>
 
-  <div class="box">
-    <h3>Mods / Modpacks</h3>
-    <p>No mods installed</p>
-  </div>
+  <div class="item">💻 Console</div>
+  <div class="item">📄 Log <span style="color:red;">4</span></div>
+
+  <div class="item">👥 Players</div>
+  <div class="item">🧩 Software</div>
+
+  <div class="item">🔌 Plugins</div>
+  <div class="item">📁 Files</div>
+
+  <div class="item">🌍 Worlds</div>
+  <div class="item">💾 Backups</div>
+
+  <div class="item full">🔐 Access</div>
+</div>
+
+<div class="bottom">
+  <div>❓ Help</div>
+  <div>⏻ Server</div>
+  <div>👤 Account</div>
 </div>
 
 </body>
