@@ -2,103 +2,53 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>GodVoid Minecraft Hosting</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minecraft Hosting Live</title>
 
 <style>
 body {
-  margin: 0;
-  height: 100vh;
-  font-family: Arial, sans-serif;
-  background: url("images/giphy.gif") no-repeat center center/cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
+  margin:0;
+  height:100vh;
+  background:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  font-family:Arial;
 }
 
-.card {
-  background: rgba(0,0,0,0.6);
-  padding: 25px;
-  border-radius: 20px;
-  color: white;
-  text-align: center;
-  width: 90%;
-  max-width: 400px;
+.main {
+  text-align:center;
 }
 
 button {
-  padding: 12px 20px;
-  margin: 10px;
-  border: none;
-  border-radius: 30px;
-  font-size: 16px;
-  cursor: pointer;
-  font-weight: bold;
-  <button onclick="openFreePanel()">Create Free Server</button>
-<button onclick="openPaid()">Buy Plan</button>
-
-<script src="script.js"></script>
+  padding:15px 25px;
+  margin:10px;
+  font-size:18px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
 }
 
 .free {
-  background: #00ffd5;
+  background:#00ff7f;
 }
 
 .paid {
-  background: orange;
-}
-
-.panel {
-  margin-top: 20px;
-  background: #111;
-  padding: 15px;
-  border-radius: 10px;
-  display: none;
+  background:#ffb300;
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
-  <h1>🚀 GodVoid Minecraft Hosting</h1>
-  <p>Free & Premium Minecraft Servers</p>
+<div class="main">
+  <h1>Minecraft Hosting Live</h1>
 
-  <button class="free" onclick="openFree()">Create Free Server</button>
-  <button class="paid" onclick="openPaid()">Buy Plan</button>
-
-  <!-- FREE PANEL -->
-  <div id="freePanel" class="panel">
-    <h3>Free Server</h3>
-    <p>❌ Not 24/7</p>
-    <p>✅ Limited RAM</p>
-    <button>Create Server</button>
-  </div>
-
-  <!-- PAID PANEL -->
-  <div id="paidPanel" class="panel">
-    <h3>Paid Plan</h3>
-    <p>✅ 24/7 Online</p>
-    <p>✅ High Performance</p>
-    <button>Buy Now</button>
-  </div>
+  <button class="free" onclick="openFreePanel()">Free Server</button>
+  <button class="paid" onclick="openPaid()">Paid Plan</button>
 </div>
 
-<script>
-function openFree() {
-  document.getElementById("freePanel").style.display = "block";
-  document.getElementById("paidPanel").style.display = "none";
-}
-
-function openPaid() {
-  document.getElementById("paidPanel").style.display = "block";
-  document.getElementById("freePanel").style.display = "none";
-}
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
