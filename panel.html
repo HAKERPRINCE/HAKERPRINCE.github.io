@@ -7,145 +7,122 @@
 <style>
 body{
   margin:0;
-  background:#1b232c;
-  font-family:Arial, sans-serif;
+  font-family: Arial, sans-serif;
+  background: url("minecraft.jpg") center/cover no-repeat fixed;
   color:white;
 }
 
-/* TOP BAR */
-.top{
-  background:#2a3540;
-  padding:14px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.overlay{
+  background: rgba(0,0,0,0.75);
+  min-height:100vh;
+  padding:20px;
 }
 
-/* SERVER BOX */
-.server-box{
-  background:#34414e;
-  margin:12px;
-  padding:14px;
-  border-radius:10px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.header{
+  text-align:center;
+  font-size:22px;
+  margin-bottom:20px;
 }
 
-.status{
-  width:12px;
-  height:12px;
-  background:red;
-  border-radius:50%;
+.card{
+  background:#1e1e1e;
+  border-radius:12px;
+  padding:15px;
+  margin-bottom:15px;
 }
 
-/* INPUT */
+.server-name{
+  font-size:18px;
+  font-weight:bold;
+}
+
 input{
-  background:#1b232c;
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border-radius:8px;
   border:none;
-  color:white;
-  padding:6px;
-  border-radius:6px;
-  width:140px;
 }
 
-/* MENU */
+button{
+  padding:10px 15px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+  margin:5px;
+}
+
+.start{background:#00c853;}
+.stop{background:#d50000;}
+.restart{background:#ffab00;}
+
 .menu{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
+}
+
+.menu div{
+  background:#2a2a2a;
   padding:12px;
-}
-
-.item{
-  background:#3d4b59;
-  padding:14px;
   border-radius:10px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.full{
-  grid-column:1 / -1;
-}
-
-/* BOTTOM BAR */
-.bottom{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:#2a3540;
-  display:flex;
-  justify-content:space-around;
-  padding:10px 0;
-  font-size:14px;
+  text-align:center;
 }
 </style>
 </head>
 
 <body>
+<div class="overlay">
 
-<!-- TOP -->
-<div class="top">
-  <div>Server</div>
-  <div>My Servers</div>
-</div>
+  <div class="header">🖥 Minecraft Server Panel</div>
 
-<!-- SERVER INFO -->
-<div class="server-box">
-  <div>
-    <b id="serverName">Server</b><br>
-    <small>#Auto-ID</small><br><br>
+  <!-- SERVER INFO -->
+  <div class="card">
+    <div class="server-name" id="serverName">Server</div>
+    <small>Server ID: #AUTO</small><br><br>
+    <b>IP:</b> <span id="serverIP">server.HackerVoid</span>
 
-    <!-- NAME CHANGE -->
-    <input type="text" id="nameInput" placeholder="Server name">
-    <button onclick="changeName()">Save</button>
+    <input type="text" id="nameInput" placeholder="Change Server Name">
+    <button onclick="changeName()">Save Name</button>
   </div>
 
-  <div class="status" id="status"></div>
-</div>
+  <!-- CONTROLS -->
+  <div class="card">
+    <h3>Server Controls</h3>
+    <button class="start">Start</button>
+    <button class="stop">Stop</button>
+    <button class="restart">Restart</button>
+  </div>
 
-<!-- MENU -->
-<div class="menu">
-  <div class="item">🔌 Server</div>
-  <div class="item">⚙️ Options</div>
+  <!-- OPTIONS (ATERNOS STYLE) -->
+  <div class="card menu">
+    <div>⚙ Options</div>
+    <div>📜 Log</div>
+    <div>🧑 Players</div>
+    <div>🧩 Plugins</div>
+    <div>🌍 Worlds</div>
+    <div>💾 Backups</div>
+    <div>📁 Files</div>
+    <div>🧠 Software</div>
+  </div>
 
-  <div class="item">💻 Console</div>
-  <div class="item">📄 Log</div>
-
-  <div class="item">👥 Players</div>
-  <div class="item">🧩 Software</div>
-
-  <div class="item">🔌 Plugins</div>
-  <div class="item">📁 Files</div>
-
-  <div class="item">🌍 Worlds</div>
-  <div class="item">💾 Backups</div>
-
-  <div class="item full">🔐 Access</div>
-</div>
-
-<!-- BOTTOM -->
-<div class="bottom">
-  <div>❓ Help</div>
-  <div>⏻ Server</div>
-  <div>👤 Account</div>
 </div>
 
 <script>
-/* LOAD SAVED NAME */
-let savedName = localStorage.getItem("serverName");
-if(savedName){
-  document.getElementById("serverName").innerText = savedName;
+/* LOAD SAVED SERVER NAME */
+let saved = localStorage.getItem("serverName");
+if(saved){
+  document.getElementById("serverName").innerText = saved;
+  document.getElementById("serverIP").innerText = saved + ".HackerVoid";
 }
 
-/* CHANGE NAME */
+/* CHANGE NAME + AUTO IP */
 function changeName(){
-  let name = document.getElementById("nameInput").value;
+  let name = document.getElementById("nameInput").value.trim().toLowerCase();
   if(name){
     document.getElementById("serverName").innerText = name;
+    document.getElementById("serverIP").innerText = name + ".HackerVoid";
     localStorage.setItem("serverName", name);
   }
 }
