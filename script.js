@@ -1,41 +1,13 @@
-// ===============================
-// CHECK: JS LOAD HO RAHA HAI YA NAHI
-// ===============================
-console.log("script.js loaded ✅");
+// ⏱️ 1.5 second baad GIF lag jaayega
+setTimeout(() => {
+  document.body.style.backgroundImage = "url('./giphy.gif')";
+}, 1500);
 
-// ===============================
-// FREE SERVER BUTTON
-// ===============================
+// buttons
 function openFreePanel() {
-  console.log("Free Server clicked");
-  // same website ke andar panel open hoga
-  window.location.href = "./panel.html";
+  window.location.href = "panel.html";
 }
 
-// ===============================
-// PAID PLAN BUTTON
-// ===============================
 function openPaid() {
-  console.log("Paid Plan clicked");
-  // payment page open hoga
-  window.location.href = "./payment.html";
-}
-
-// ===============================
-// FUTURE READY (backend ke liye)
-// ===============================
-
-// Example: server start
-function startServer() {
-  alert("Server Starting... (demo)");
-}
-
-// Example: server stop
-function stopServer() {
-  alert("Server Stopped... (demo)");
-}
-
-// Example: restart
-function restartServer() {
-  alert("Server Restarting... (demo)");
+  window.location.href = "payment.html";
 }
