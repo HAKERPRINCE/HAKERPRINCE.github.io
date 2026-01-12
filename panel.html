@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Server Panel</title>
+<style>
+body {
+  background:#0d0d0d;
+  color:white;
+  font-family:Arial;
+  text-align:center;
+}
+
+.box {
+  background:#1a1a1a;
+  padding:20px;
+  margin:20px;
+  border-radius:15px;
+}
+
+button {
+  padding:10px 20px;
+  margin:5px;
+  font-size:16px;
+  border:none;
+  border-radius:10px;
+}
+
+.start {background:green;}
+.stop {background:red;}
+.restart {background:orange;}
+</style>
+</head>
+
+<body>
+
+<h1>🖥 Minecraft Server Panel</h1>
+
+<div class="box">
+  <h3>Server Controls</h3>
+  <button class="start" onclick="alert('Server Started')">Start</button>
+  <button class="stop" onclick="alert('Server Stopped')">Stop</button>
+  <button class="restart" onclick="alert('Server Restarted')">Restart</button>
+</div>
+
+<div class="box">
+  <h3>Plugins</h3>
+  <p>EssentialsX</p>
+  <p>LuckPerms</p>
+</div>
+
+<div class="box">
+  <h3>Mods / Modpacks</h3>
+  <p>No mods installed</p>
+</div>
+
+</body>
+</html>
