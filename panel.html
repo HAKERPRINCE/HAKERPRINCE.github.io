@@ -1,56 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Server Panel</title>
+<meta charset="UTF-8">
+<title>Minecraft Server Panel</title>
+
 <style>
 body {
-  background:#0d0d0d;
-  color:white;
-  font-family:Arial;
-  text-align:center;
+  margin: 0;
+  height: 100vh;
+
+  /* 🟢 PANEL PAGE = IMAGE ONLY */
+  background: url("./minecraft.jpg") no-repeat center center/cover;
+
+  font-family: Arial, sans-serif;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* dark overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: -1;
+}
+
+.panel {
+  width: 90%;
+  max-width: 600px;
+  margin-top: 30px;
 }
 
 .box {
-  background:#1a1a1a;
-  padding:20px;
-  margin:20px;
-  border-radius:15px;
+  background: rgba(0,0,0,0.7);
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 15px;
 }
 
-button {
-  padding:10px 20px;
-  margin:5px;
-  font-size:16px;
-  border:none;
-  border-radius:10px;
+.buttons button {
+  padding: 10px 16px;
+  margin: 5px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
 }
 
-.start {background:green;}
-.stop {background:red;}
-.restart {background:orange;}
+.start { background: #00c853; }
+.stop { background: #d50000; }
+.restart { background: #ff9100; }
 </style>
 </head>
 
 <body>
 
-<h1>🖥 Minecraft Server Panel</h1>
+<div class="panel">
+  <h2>🖥️ Minecraft Server Panel</h2>
 
-<div class="box">
-  <h3>Server Controls</h3>
-  <button class="start" onclick="alert('Server Started')">Start</button>
-  <button class="stop" onclick="alert('Server Stopped')">Stop</button>
-  <button class="restart" onclick="alert('Server Restarted')">Restart</button>
-</div>
+  <div class="box">
+    <h3>Server Controls</h3>
+    <div class="buttons">
+      <button class="start">Start</button>
+      <button class="stop">Stop</button>
+      <button class="restart">Restart</button>
+    </div>
+  </div>
 
-<div class="box">
-  <h3>Plugins</h3>
-  <p>EssentialsX</p>
-  <p>LuckPerms</p>
-</div>
+  <div class="box">
+    <h3>Plugins</h3>
+    <p>EssentialsX</p>
+    <p>LuckPerms</p>
+  </div>
 
-<div class="box">
-  <h3>Mods / Modpacks</h3>
-  <p>No mods installed</p>
+  <div class="box">
+    <h3>Mods / Modpacks</h3>
+    <p>No mods installed</p>
+  </div>
 </div>
 
 </body>
