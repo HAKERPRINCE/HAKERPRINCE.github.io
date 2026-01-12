@@ -7,26 +7,26 @@
 <style>
 body{
   margin:0;
-  background:#0f1720;
+  background:#1b232c;
   font-family:Arial, sans-serif;
   color:white;
 }
 
-/* top bar */
+/* TOP BAR */
 .top{
-  background:#1c2733;
-  padding:15px;
-  font-size:20px;
+  background:#2a3540;
+  padding:14px;
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
 
+/* SERVER BOX */
 .server-box{
-  background:#253240;
-  margin:15px;
-  padding:15px;
-  border-radius:12px;
+  background:#34414e;
+  margin:12px;
+  padding:14px;
+  border-radius:10px;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -39,40 +39,44 @@ body{
   border-radius:50%;
 }
 
-/* menu */
+/* INPUT */
+input{
+  background:#1b232c;
+  border:none;
+  color:white;
+  padding:6px;
+  border-radius:6px;
+  width:140px;
+}
+
+/* MENU */
 .menu{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
-  padding:15px;
+  gap:10px;
+  padding:12px;
 }
 
 .item{
-  background:#2f3e4d;
-  padding:15px;
-  border-radius:12px;
+  background:#3d4b59;
+  padding:14px;
+  border-radius:10px;
   display:flex;
   align-items:center;
   gap:10px;
-  cursor:pointer;
 }
 
-.item:hover{
-  background:#3a4c5f;
-}
-
-/* full width */
 .full{
   grid-column:1 / -1;
 }
 
-/* bottom bar */
+/* BOTTOM BAR */
 .bottom{
   position:fixed;
   bottom:0;
   left:0;
   right:0;
-  background:#1c2733;
+  background:#2a3540;
   display:flex;
   justify-content:space-around;
   padding:10px 0;
@@ -83,21 +87,33 @@ body{
 
 <body>
 
+<!-- TOP -->
 <div class="top">
   <div>Server</div>
   <div>My Servers</div>
 </div>
 
+<!-- SERVER INFO -->
 <div class="server-box">
-  <div class="status"></div>
+  <div>
+    <b id="serverName">Server</b><br>
+    <small>#Auto-ID</small><br><br>
+
+    <!-- NAME CHANGE -->
+    <input type="text" id="nameInput" placeholder="Server name">
+    <button onclick="changeName()">Save</button>
+  </div>
+
+  <div class="status" id="status"></div>
 </div>
 
+<!-- MENU -->
 <div class="menu">
   <div class="item">🔌 Server</div>
   <div class="item">⚙️ Options</div>
 
   <div class="item">💻 Console</div>
-  <div class="item">📄 Log <span style="color:red;">4</span></div>
+  <div class="item">📄 Log</div>
 
   <div class="item">👥 Players</div>
   <div class="item">🧩 Software</div>
@@ -111,11 +127,29 @@ body{
   <div class="item full">🔐 Access</div>
 </div>
 
+<!-- BOTTOM -->
 <div class="bottom">
   <div>❓ Help</div>
   <div>⏻ Server</div>
   <div>👤 Account</div>
 </div>
+
+<script>
+/* LOAD SAVED NAME */
+let savedName = localStorage.getItem("serverName");
+if(savedName){
+  document.getElementById("serverName").innerText = savedName;
+}
+
+/* CHANGE NAME */
+function changeName(){
+  let name = document.getElementById("nameInput").value;
+  if(name){
+    document.getElementById("serverName").innerText = name;
+    localStorage.setItem("serverName", name);
+  }
+}
+</script>
 
 </body>
 </html>
