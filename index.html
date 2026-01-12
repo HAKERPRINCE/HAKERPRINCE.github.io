@@ -2,16 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Minecraft Hosting Live</title>
 
 <style>
-/* ===== PAGE BACKGROUND ===== */
 body {
   margin: 0;
   height: 100vh;
 
-  background-image: url("./giphy.gif");
+  /* 🔹 PEHLE IMAGE */
+  background-image: url("./minecraft.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -22,8 +21,11 @@ body {
 
   font-family: Arial, sans-serif;
   color: white;
+
+  transition: background-image 1s ease-in-out;
 }
 
+/* dark overlay */
 body::before {
   content: "";
   position: fixed;
@@ -32,28 +34,23 @@ body::before {
   z-index: -1;
 }
 
-/* ===== CENTER BOX ===== */
 .main {
   text-align: center;
 }
 
-/* ===== BUTTON COMMON ===== */
-.button {
+button {
   padding: 15px 25px;
   margin: 10px;
   font-size: 18px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  color: black;
 }
 
-/* ===== FREE BUTTON ===== */
 .free {
   background: #00ff7f;
 }
 
-/* ===== PAID BUTTON ===== */
 .paid {
   background: #ffb300;
 }
@@ -65,11 +62,10 @@ body::before {
 <div class="main">
   <h1>Minecraft Hosting Live</h1>
 
-  <button class="button free" onclick="openFreePanel()">Free Server</button>
-  <button class="button paid" onclick="openPaid()">Paid Plan</button>
+  <button class="free" onclick="openFreePanel()">Free Server</button>
+  <button class="paid" onclick="openPaid()">Paid Plan</button>
 </div>
 
 <script src="./script.js"></script>
-
 </body>
 </html>
