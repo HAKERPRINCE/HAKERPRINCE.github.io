@@ -9,11 +9,8 @@ body {
   margin: 0;
   height: 100vh;
 
-  /* 🔹 PEHLE IMAGE */
-  background-image: url("./minecraft.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  /* 🔥 HOME PAGE = GIF */
+  background: url("./giphy.gif") no-repeat center center/cover;
 
   display: flex;
   justify-content: center;
@@ -21,16 +18,14 @@ body {
 
   font-family: Arial, sans-serif;
   color: white;
-
-  transition: background-image 1s ease-in-out;
 }
 
-/* dark overlay */
+/* dark layer */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.55);
+  background: rgba(0,0,0,0.6);
   z-index: -1;
 }
 
@@ -62,10 +57,15 @@ button {
 <div class="main">
   <h1>Minecraft Hosting Live</h1>
 
-  <button class="free" onclick="openFreePanel()">Free Server</button>
-  <button class="paid" onclick="openPaid()">Paid Plan</button>
+  <button class="free" onclick="openPanel()">Free Server</button>
+  <button class="paid" onclick="openPanel()">Paid Server</button>
 </div>
 
-<script src="./script.js"></script>
+<script>
+function openPanel() {
+  window.location.href = "panel.html";
+}
+</script>
+
 </body>
 </html>
