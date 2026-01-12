@@ -1,80 +1,96 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Minecraft Hosting</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>GodVoid Minecraft Hosting</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: black;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background: url("giphy.gif") no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .box {
-      text-align: center;
-    }
+.card {
+  background: rgba(0,0,0,0.6);
+  padding: 25px;
+  border-radius: 20px;
+  color: white;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+}
 
-    button {
-      padding: 12px 25px;
-      margin: 10px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      background: #00ff88;
-      color: black;
-      font-weight: bold;
-    }
+button {
+  padding: 12px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
 
-    .panel {
-      margin-top: 20px;
-      padding: 15px;
-      background: #111;
-      border-radius: 10px;
-      display: none;
-    }
-  </style>
+.free {
+  background: #00ffd5;
+}
+
+.paid {
+  background: orange;
+}
+
+.panel {
+  margin-top: 20px;
+  background: #111;
+  padding: 15px;
+  border-radius: 10px;
+  display: none;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="box">
-    <h1>Minecraft Hosting Live</h1>
+<div class="card">
+  <h1>🚀 GodVoid Minecraft Hosting</h1>
+  <p>Free & Premium Minecraft Servers</p>
 
-    <button onclick="showFree()">Free Server</button>
-    <button onclick="showPaid()">Paid Plan</button>
+  <button class="free" onclick="openFree()">Create Free Server</button>
+  <button class="paid" onclick="openPaid()">Buy Plan</button>
 
-    <div id="freePanel" class="panel">
-      <h2>Free Server</h2>
-      <p>Limited RAM</p>
-      <p>Not 24/7</p>
-    </div>
-
-    <div id="paidPanel" class="panel">
-      <h2>Paid Plan</h2>
-      <p>24/7 Online</p>
-      <p>High Performance</p>
-    </div>
+  <!-- FREE PANEL -->
+  <div id="freePanel" class="panel">
+    <h3>Free Server</h3>
+    <p>❌ Not 24/7</p>
+    <p>✅ Limited RAM</p>
+    <button>Create Server</button>
   </div>
 
-  <script>
-    function showFree() {
-      document.getElementById("freePanel").style.display = "block";
-      document.getElementById("paidPanel").style.display = "none";
-    }
+  <!-- PAID PANEL -->
+  <div id="paidPanel" class="panel">
+    <h3>Paid Plan</h3>
+    <p>✅ 24/7 Online</p>
+    <p>✅ High Performance</p>
+    <button>Buy Now</button>
+  </div>
+</div>
 
-    function showPaid() {
-      document.getElementById("paidPanel").style.display = "block";
-      document.getElementById("freePanel").style.display = "none";
-    }
-  </script>
+<script>
+function openFree() {
+  document.getElementById("freePanel").style.display = "block";
+  document.getElementById("paidPanel").style.display = "none";
+}
+
+function openPaid() {
+  document.getElementById("paidPanel").style.display = "block";
+  document.getElementById("freePanel").style.display = "none";
+}
+</script>
 
 </body>
 </html>
