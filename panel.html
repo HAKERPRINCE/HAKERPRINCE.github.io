@@ -3,205 +3,72 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Server Panel - HAKERPRINCE</title>
-
+<title>HAKERPRINCE Panel</title>
 <style>
-body{
-  margin:0;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: url("minecraft.jpg") center/cover no-repeat fixed;
-  color:white;
-}
-
-.overlay{
-  background: rgba(0,0,0,0.85);
-  min-height: 100vh;
-  padding: 20px;
-}
-
-.header{
-  text-align: center;
-  font-size: 26px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  color: #00ff7f;
-}
-
-.card{
-  background: #1e1e1e;
-  border: 1px solid #333;
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 15px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-}
-
-#status-indicator {
-  height: 12px;
-  width: 12px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  margin-right: 5px;
-}
-
-.online { background-color: #00c853 !important; }
-.offline { background-color: #d50000 !important; }
-
-.controls button{
-  padding: 12px 20px;
-  border: none;
-  border-radius: 8px;
-  margin: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-  color: white;
-}
-
-.start{ background: #00c853; }
-.start:hover{ background: #009624; }
-.stop{ background: #d50000; }
-.stop:hover{ background: #a30000; }
-.restart{ background: #ffab00; }
-.restart:hover{ background: #c67100; }
-
-.menu{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 15px;
-}
-
-.menu div{
-  background: #2d2d2d;
-  padding: 15px;
-  border-radius: 10px;
-  text-align: center;
-  border: 1px solid #444;
-  cursor: pointer;
-}
-
-.menu div:hover{ background: #3d3d3d; }
-
-#ip { color: #00e5ff; font-weight: bold; }
+body{ margin:0; font-family:Arial; background:url("minecraft.jpg") center/cover no-repeat fixed; color:white; }
+.overlay{ background:rgba(0,0,0,0.8); min-height:100vh; padding:20px; text-align:center; }
+.card{ background:#222; border-radius:15px; padding:20px; margin-bottom:15px; border:1px solid #444; }
+.status-box { font-size: 18px; margin-bottom: 10px; }
+.online { color: #00ff7f; }
+.offline { color: #ff4d4d; }
+.btn-group button { padding:12px 20px; border:none; border-radius:8px; margin:5px; font-weight:bold; cursor:pointer; color:white; }
+.start { background:#00c853; } .stop { background:#d50000; } .restart { background:#ffab00; }
+.menu-grid { display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+.menu-item { background:#333; padding:15px; border-radius:10px; }
 </style>
 </head>
-
 <body>
 <div class="overlay">
-
-  <div class="header">🖥 HAKERPRINCE SERVER PANEL</div>
-
+  <h2>🖥 HAKERPRINCE PANEL</h2>
+  
   <div class="card">
-    <div style="margin-bottom: 10px;">
-        <span id="status-indicator"></span> 
-        Status: <span id="status-text">OFFLINE</span>
-    </div>
-    <b id="sname" style="font-size: 20px;">server</b><br>
-    IP: <span id="ip">loading...</span>
-
-    <div style="margin-top: 15px; display: flex; gap: 5px;">
-        <input id="nameInput" placeholder="New server name"
-         style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #444; background: #111; color: white;">
-        <button onclick="saveName()" style="padding: 10px; border-radius: 8px; background: #007bff; color: white; border: none;">Save</button>
-    </div>
+    <div class="status-box">Status: <span id="statusText" class="offline">OFFLINE</span></div>
+    <b id="sname">Server</b><br>
+    <small id="ip">loading...</small>
   </div>
 
-  <div class="card controls">
-    <h3>Control Center</h3>
+  <div class="card btn-group">
     <button class="start" onclick="controlServer('start')">START</button>
-    <button class="stop" onclick="controlServer('stop')">STOP</button>
+    <button class="stop" onclick="controlServer('stop') Terminate">STOP</button>
     <button class="restart" onclick="controlServer('restart')">RESTART</button>
   </div>
 
-  <div class="card menu">
-    <div>⚙ Options</div>
-    <div>📜 Console</div>
-    <div>🧑 Players</div>
-    <div>🧩 Plugins</div>
-    <div>🌍 Worlds</div>
-    <div>📁 Files</div>
-    <div>🧠 Software</div>
-    <div style="color: #ff5252;" onclick="location.href='index.html'">🚪 Logout</div>
+  <div class="menu-grid">
+    <div class="menu-item">⚙ Config</div>
+    <div class="menu-item">📜 Console</div>
+    <div class="menu-item">📁 Files</div>
+    <div class="menu-item">🧩 Plugins</div>
   </div>
-
 </div>
 
 <script>
-// --- Configuration ---
-const BACKEND_URL = "https://your-backend-app.onrender.com"; // Replace with your Render URL later
+const BACKEND_URL = "https://hakerprince-github-io-2.onrender.com"; 
 
-// Load Saved Data
-let saved = localStorage.getItem("serverName");
-if(saved){
-  updateUI(saved);
-} else {
-  updateUI("haker-server");
-}
-
-function updateUI(name) {
-    document.getElementById("sname").innerText = name;
-    document.getElementById("ip").innerText = name + ".godvoid.host";
-}
-
-function saveName(){
-  let n = document.getElementById("nameInput").value.toLowerCase().replace(/\s+/g, '');
-  if(n){
-    localStorage.setItem("serverName", n);
-    updateUI(n);
-    alert("Server name updated!");
-  }
-}
-
-// --- Backend Control Logic ---
 async function controlServer(action) {
-    const statusText = document.getElementById("status-text");
-    const indicator = document.getElementById("status-indicator");
-
-    console.log("Action triggered: " + action);
-    
-    // UI Change immediately for better feel
-    statusText.innerText = action.toUpperCase() + "ING...";
+    const status = document.getElementById("statusText");
+    status.innerText = action.toUpperCase() + "...";
     
     try {
-        // Asli backend ko request bhejna
         const response = await fetch(`${BACKEND_URL}/${action}`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                serverName: localStorage.getItem("serverName") || "default" 
-            })
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ server: "HakerPrince-1" })
         });
-
         const data = await response.json();
+        alert(data.message);
         
-        // Update UI based on response
-        if(action === 'start') {
-            indicator.classList.add('online');
-            indicator.classList.remove('offline');
-            statusText.innerText = "ONLINE";
-        } else if(action === 'stop') {
-            indicator.classList.remove('online');
-            indicator.classList.add('offline');
-            statusText.innerText = "OFFLINE";
-        }
-        
-        alert("Success: " + data.message);
-
-    } catch (error) {
-        console.error("Backend Error:", error);
-        alert("Error: Backend se connection nahi ho paya. Make sure backend is running.");
-        statusText.innerText = "ERROR";
+        if(action === 'start') { status.innerText = "ONLINE"; status.className = "online"; }
+        if(action === 'stop') { status.innerText = "OFFLINE"; status.className = "offline"; }
+    } catch (e) {
+        alert("Backend Offline! Render ko jagne mein 1 min lagta hai.");
+        status.innerText = "OFFLINE";
     }
 }
+
+// Name Logic
+let saved = localStorage.getItem("serverName") || "HakerPrince";
+document.getElementById("sname").innerText = saved;
+document.getElementById("ip").innerText = saved.toLowerCase() + ".godvoid.host";
 </script>
-
-</body>
-</html>
-
-}
-</script>
-
 </body>
 </html>
