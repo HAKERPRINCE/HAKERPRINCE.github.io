@@ -1,23 +1,39 @@
 const express = require('express');
-const cors = require('cors'); // CORS install karna zaroori hai: npm install cors
+const cors = require('cors');
+const aternos = require('aternos-api'); // Aternos wrapper
 const app = express();
 
-app.use(cors()); // Iske bina GitHub Pages se request block ho jayegi
+app.use(cors());
 app.use(express.json());
 
-app.post('/start', (req, res) => {
-  console.log(`Starting server: ${req.body.serverName}`);
-  res.json({ message: 'Server is starting...' });
+// Aternos Login Details (Apna Aternos username/password yahan dalein)
+const AT_USER = "APNA_USERNAME";
+const AT_PASS = "APNA_PASSWORD";
+
+app.post('/start', async (req, res) => {
+  try {
+    const at = new aternos.Aternos(AT_USER, AT_PASS);
+    await at.login();
+    const servers = await at.getServers();
+    const myServer = servers[0]; // Pehla server select karega
+    await myServer.start();
+    res.json({ message: 'Aternos Server Start ho raha hai!' });
+  } catch (error) {
+    res.status(500).json({ message: 'Aternos Login Failed!', error: error.message });
+  }
 });
 
-app.post('/stop', (req, res) => {
-  console.log(`Stopping server: ${req.body.serverName}`);
-  res.json({ message: 'Server has been stopped.' });
+app.post('/stop', async (req, res) => {
+  try {
+    const at = new aternos.Aternos(AT_USER, AT_PASS);
+    await at.login();
+    const servers = await at.getServers();
+    await servers[0].stop();
+    res.json({ message: 'Server Stop kar diya gaya hai.' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error stopping server' });
+  }
 });
 
-app.post('/restart', (req, res) => {
-  res.json({ message: 'Server is restarting...' });
-});
+app.listen(3000, () => console.log('Backend on port 3000'));
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
